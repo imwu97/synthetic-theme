@@ -3,7 +3,7 @@
   "displayName": "Synthetic Theme+",
   "description": "📦Synthetic Theme+: A modular synthesis of coding visuals – starting with icons & highlights.",
   "publisher": "imwu97",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "engines": {
     "vscode": "^1.101.0"
   },
@@ -36,5 +36,6 @@
         "path": "./icon-themes/Synthetic Theme+-icon-theme.json"
       }
     ]
-  }
+  },
+  "dependencies": {}
 }

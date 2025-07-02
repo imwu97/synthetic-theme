@@ -1,0 +1,38 @@
+name: Publish VSCode Extension
+
+on:
+  push:
+    tags: ["v*"] # 仅在推送版本标签（如 v1.0.0）时触发
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. 检出代码
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 2. 安装 Node.js 环境
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22" # 推荐使用 LTS 版本
+
+        # 3. 安装依赖项
+      - name: Install Dependencies
+        run: npm install
+
+        # 4. 安装 vsce
+      - name: Install vsce
+        run: npm install -g @vscode/vsce
+
+        # 5. 构建 vsix 文件
+      - name: Build vsix file
+        run: vsce package --out ./releases/${npm_package_version}.vsix
+
+        # 6. 发布扩展
+      - name: Publish Extension
+        run: vsce publish --packagePath ./releases/${npm_package_version}.vsix -pat $VSCE_TOKEN
+        env:
+          VSCE_TOKEN: ${{ secrets.VSCE_TOKEN }}
