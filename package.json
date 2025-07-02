@@ -20,6 +20,7 @@
     "type": "git",
     "url": "https://github.com/imwu97/synthetic-theme"
   },
+  "icon": "assets/icon.png",
   "contributes": {
     "themes": [
       {
